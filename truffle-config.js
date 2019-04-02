@@ -1,10 +1,17 @@
 const HDWalletProvider = require('truffle-hdwallet-provider');
 
-const testnetConf = require('./private_file/ropsten-testnet.js');
+const networkConfig = require('./private_file/network-config.js');
 /*
 module.exports = {
-    infuraKey: 'xxxxxx_infula.io's "PROJECT ID"_xxxxxx',
-    privateKey: 'xxxxxx_your_eth_address_private_key_xxxxxx',
+    ropsten: {
+        infuraKey: 'xxxxxx_infula.io's "PROJECT ID"_xxxxxx',
+        privateKey: 'xxxxxx_your_eth_address_private_key_xxxxxx',
+    },
+    private: {
+        url: 'http://127.0.0.1:8545/',
+        privateKey: 'xxxxxx_your_eth_address_private_key_xxxxxx',
+        id: 1234567,
+    },
 };
  */
 
@@ -12,7 +19,7 @@ module.exports = {
     networks: {
         contracts_build_directory: './build/contracts',
         ropsten: {
-            provider: () => new HDWalletProvider(testnetConf.privateKey, `https://ropsten.infura.io/v3/${testnetConf.infuraKey}`),
+            provider: () => new HDWalletProvider(networkConfig.ropsten.privateKey, `https://ropsten.infura.io/v3/${networkConfig.ropsten.infuraKey}`),
             network_id: 3,
             gas: 5500000,
             confirmations: 2,
@@ -20,11 +27,15 @@ module.exports = {
             skipDryRun: true,
         },
 
+        private_poa: {
+            provider: () => new HDWalletProvider(networkConfig.private_poa.privateKey, networkConfig.private_poa.url),
+            network_id: networkConfig.private_poa.id,
+            gas: 4700000,
+        },
+
         private: {
-            host: '127.0.0.1',
-            port: 8545,
-            network_id: 1547092157,
-            from: '0x083Cd205ee174D0d0D259c0225be4218EAdcE556', // truffle develop
+            provider: () => new HDWalletProvider(networkConfig.private.privateKey, networkConfig.private.url),
+            network_id: networkConfig.private.id,
             gas: 5651873,
         },
     },
