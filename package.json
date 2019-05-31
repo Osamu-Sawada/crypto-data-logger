@@ -14,6 +14,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.19.0",
     "mermaid": "^8.0.0",
     "mermaid.cli": "^0.5.1",
     "microtime": "^3.0.0",
