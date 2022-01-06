@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
-    "mermaid": "^8.0.0",
+    "mermaid": "^8.13.8",
     "mermaid.cli": "^0.5.1",
     "microtime": "^3.0.0",
     "nanoid": "^2.0.1",
